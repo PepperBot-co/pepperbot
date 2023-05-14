@@ -40,7 +40,7 @@ When you're creating a pull request, please:
 
 ## Code of Conduct
 
-By participating in this project, you're expected to uphold our [Code of Conduct](https://github.com/Pepperbot-co/pepperbot/CODE_OF_CONDUCT.md). Please report unacceptable behavior to `coc@pepperbot.co`.
+By participating in this project, you're expected to uphold our [Code of Conduct](https://github.com/PepperBot-co/pepperbot/blob/main/CODE_OF_CONDUCT.md). Please report unacceptable behavior to `coc@pepperbot.co`.
 
 ## Questions?
 

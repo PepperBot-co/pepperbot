@@ -32,7 +32,7 @@ For more specific information about Pepperbot, visit the [Pepperbot Documentatio
 
 ## Contributing
 
-As an open-source project, we encourage community involvement and contributions. Check out our [Contributor Guidelines](https://github.com/Pepperbot-co/pepperbot/CONTRIBUTING.md) and the [Code of Conduct](https://github.com/Pepperbot-co/pepperbot/CODE_OF_CONDUCT.md).
+As an open-source project, we encourage community involvement and contributions. Check out our [Contributor Guidelines](https://github.com/PepperBot-co/pepperbot/blob/main/CONTRIBUTING.md) and the [Code of Conduct](https://github.com/PepperBot-co/pepperbot/blob/main/CODE_OF_CONDUCT.md).
 
 ## Deployment
 
@@ -40,7 +40,7 @@ Pepperbot can be deployed in various environments. Follow our deployment guides 
 
 ## License
 
-Pepperbot is [MIT licensed](https://github.com/Pepperbot-co/pepperbot/LICENSE.md).
+Pepperbot is [MIT licensed](https://github.com/PepperBot-co/pepperbot/blob/main/LICENSE.md).
 
 ## Acknowledgements
 
