@@ -1,11 +1,6 @@
 import Head from "next/head";
 
-type HeadMetaProps = {
-  title: string;
-  description?: string;
-  keywords?: string;
-  favicon?: string;
-};
+import { type HeadMetaProps } from "./head-meta.types";
 
 const HeadMeta: React.FC<HeadMetaProps> = ({
   title,

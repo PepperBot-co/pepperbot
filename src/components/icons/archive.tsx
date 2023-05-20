@@ -1,4 +1,4 @@
-export default function Archive() {
+const Archive: React.FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,6 @@ export default function Archive() {
       />
     </svg>
   );
-}
+};
+
+export default Archive;

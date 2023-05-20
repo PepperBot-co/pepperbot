@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { memo } from "react";
+
 import { type CardData } from "@pb/types";
 
 const Card: React.FC<CardData> = ({ title, description, flowID }) => {

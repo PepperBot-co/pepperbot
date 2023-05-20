@@ -1,4 +1,4 @@
-export default function Delete() {
+const Delete: React.FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,6 @@ export default function Delete() {
       />
     </svg>
   );
-}
+};
+
+export default Delete;
