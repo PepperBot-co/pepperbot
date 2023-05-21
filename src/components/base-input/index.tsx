@@ -13,13 +13,14 @@ const BaseInput: React.FC<BaseInputData> = ({
   label = "",
   placeholder = "",
   inputType = "textarea",
+  containerCustomClasses = "",
   labelCustomClasses = "",
   inputCustomClasses = ""
 }) => {
   const inputElement = inputType === "input" ? "input" : "textarea";
 
   return (
-    <div className="form-control p-10">
+    <div className={`form-control ${containerCustomClasses}`}>
       {label && (
         <div className="mb-4">
           <label className={`label-text text-base md:text-lg ${labelCustomClasses}`}>
