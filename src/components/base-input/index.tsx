@@ -9,7 +9,7 @@ const inputTypeDefaultClasses = {
 
 // TODO(aliabudiab112@gmail.com): Add a "...restProps" parameter to handle properties for both input and textarea components.
 
-const BaseTextArea: React.FC<BaseInputData> = ({
+const BaseInput: React.FC<BaseInputData> = ({
   label = "",
   placeholder = "",
   inputType = "textarea",
@@ -36,4 +36,4 @@ const BaseTextArea: React.FC<BaseInputData> = ({
   );
 };
 
-export default memo(BaseTextArea);
+export default memo(BaseInput);
