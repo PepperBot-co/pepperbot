@@ -28,7 +28,7 @@ const BaseInput: React.FC<BaseInputData> = ({
           </label>
         </div>
       )}
-
+      {/* // TODO(aliabudiab112@gmail.com): Include "...restProps" parameter in the params object to handle additional properties. */}
       {React.createElement(inputElement, {
         className: `${inputTypeDefaultClasses[inputElement]} ${inputCustomClasses}`,
         placeholder
