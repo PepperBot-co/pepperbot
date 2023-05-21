@@ -8,7 +8,7 @@ import { type InfoCardData } from "./info-card.types";
 const InfoCard: React.FC<InfoCardData> = ({
   icon,
   title,
-  description,
+  description = "",
   cardContainerCustomClasses = ""
 }) => {
   return (
@@ -20,7 +20,7 @@ const InfoCard: React.FC<InfoCardData> = ({
       </div>
       <div className="flex flex-col gap-y-2">
         <h3 className="text-base font-semibold md:text-lg">{title}</h3>
-        <p className="text-xs md:text-sm">{description}</p>
+        {description && <p className="text-xs md:text-sm">{description}</p>}
       </div>
     </div>
   );
