@@ -1,21 +1,19 @@
 import React, { memo } from "react";
 
-import { type BaseInputData } from "./base-input.types";
+import { type BaseInputData } from "./base-input.interface";
 
 const inputTypeDefaultClasses = {
   textarea: "textarea-bordered textarea h-20",
   input: "input input-bordered"
 };
 
-// TODO(aliabudiab112@gmail.com): Add a "...restProps" parameter to handle properties for both input and textarea components.
-
 const BaseInput: React.FC<BaseInputData> = ({
   label = "",
-  placeholder = "",
   inputType = "textarea",
   containerCustomClasses = "",
   labelCustomClasses = "",
-  inputCustomClasses = ""
+  inputCustomClasses = "",
+  ...restProps
 }) => {
   const inputElement = inputType === "input" ? "input" : "textarea";
 
@@ -28,10 +26,10 @@ const BaseInput: React.FC<BaseInputData> = ({
           </label>
         </div>
       )}
-      {/* // TODO(aliabudiab112@gmail.com): Include "...restProps" parameter in the params object to handle additional properties. */}
+
       {React.createElement(inputElement, {
         className: `${inputTypeDefaultClasses[inputElement]} ${inputCustomClasses}`,
-        placeholder
+        ...restProps
       })}
     </div>
   );

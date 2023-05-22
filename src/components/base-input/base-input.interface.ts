@@ -1,8 +1,8 @@
-export type BaseInputData = {
+export interface BaseInputData
+  extends React.HTMLProps<HTMLInputElement | HTMLTextAreaElement> {
   label?: string;
-  placeholder?: string;
   inputType?: "input" | "textarea";
   containerCustomClasses?: string;
   labelCustomClasses?: string;
   inputCustomClasses?: string;
-};
+}
