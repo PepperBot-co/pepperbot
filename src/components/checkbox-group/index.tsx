@@ -4,7 +4,7 @@ import type { CheckboxGroupProps, CheckboxValue } from "./checkbox-group.types";
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   groupTitle = "",
-  checkboxes,
+  checkboxes = [],
   titleCustomClasses = "",
   containerCustomClasses = "",
   checkboxGroupCustomClasses = "",
