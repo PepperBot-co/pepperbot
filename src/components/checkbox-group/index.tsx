@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, useEffect, memo } from "react";
 
 import type { CheckboxGroupProps, CheckboxValue } from "./checkbox-group.types";
 
@@ -10,7 +10,8 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   checkboxGroupCustomClasses = "",
   checkboxElementCustomClasses = "",
   checkboxLabelCustomClasses = "",
-  onChange
+  onChange,
+  ...restProps
 }) => {
   const [selectedValues, setSelectedValues] = useState<CheckboxValue[]>([]);
 
@@ -33,6 +34,16 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
       onChange(updatedValues);
     }
   };
+
+  useEffect(() => {
+    const checkedValues: CheckboxValue[] = [];
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) checkedValues.push(checkbox.value);
+    });
+
+    setSelectedValues(checkedValues);
+  }, [checkboxes]);
 
   return (
     <div className={containerCustomClasses}>
@@ -61,6 +72,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
               checked={selectedValues.includes(checkbox.value)}
               className="checkbox"
               onChange={handleCheckboxChange}
+              {...restProps}
             />
             <span className={`label-text ${checkboxLabelCustomClasses}`}>
               {checkbox.label}
