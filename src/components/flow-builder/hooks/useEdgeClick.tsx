@@ -1,40 +1,52 @@
 import { useReactFlow, type EdgeProps } from "reactflow";
+import { ChatBubble } from "@pb/components/icons";
 
-import { uuid, randomLabel } from "../utils";
+import { uuid } from "../utils";
 
-// this hook implements the logic for clicking the button on a workflow edge
-// on edge click: create a node in between the two nodes that are connected by the edge
+/**
+ * Custom hook that generates a function to handle edge clicks in a ReactFlow graph.
+ * When an edge is clicked, this function inserts a new node between the source and target nodes
+ * of the clicked edge, and replaces the clicked edge with two new edges - one from source to new node,
+ * and the other from the new node to target.
+ *
+ * @param {string} id - The ID of the edge that will trigger the function.
+ * @returns {Function} A function that handles edge clicks according to the logic defined inside.
+ */
 function useEdgeClick(id: EdgeProps["id"]) {
   const { setEdges, setNodes, getNode, getEdge } = useReactFlow();
 
   const handleEdgeClick = () => {
-    // first we retrieve the edge object to get the source and target id
+    // Retrieve edge object with given ID
     const edge = getEdge(id);
 
     if (!edge) {
       return;
     }
 
-    // we retrieve the target node to get its position
+    // Retrieve target node object of edge
     const targetNode = getNode(edge.target);
 
     if (!targetNode) {
       return;
     }
 
-    // create a unique id for newly added elements
+    // Generate unique ID for new node
     const insertNodeId = uuid();
 
-    // this is the node object that will be added in between source and target node
+    // Define new node to be inserted
     const insertNode = {
       id: insertNodeId,
-      // we place the node at the current position of the target (prevents jumping)
       position: { x: targetNode.position.x, y: targetNode.position.y },
-      data: { label: randomLabel().label, icon: randomLabel().icon },
+      data: {
+        label: "Message",
+        icon: <ChatBubble />,
+        description:
+          "Craft a query that requires responses in unformatted text.",
+      },
       type: "workflow",
     };
 
-    // new connection from source to new node
+    // Define new edge from source node to new node
     const sourceEdge = {
       id: `${edge.source}->${insertNodeId}`,
       source: edge.source,
@@ -42,7 +54,7 @@ function useEdgeClick(id: EdgeProps["id"]) {
       type: "workflow",
     };
 
-    // new connection from new node to target
+    // Define new edge from new node to target node
     const targetEdge = {
       id: `${insertNodeId}->${edge.target}`,
       source: insertNodeId,
@@ -50,12 +62,12 @@ function useEdgeClick(id: EdgeProps["id"]) {
       type: "workflow",
     };
 
-    // remove the edge that was clicked as we have a new connection with a node inbetween
+    // Update edge list, replacing clicked edge with new edges
     setEdges((edges) =>
       edges.filter((e) => e.id !== id).concat([sourceEdge, targetEdge])
     );
 
-    // insert the node between the source and target node in the react flow state
+    // Insert new node at the position of the target node in the node list
     setNodes((nodes) => {
       const targetNodeIndex = nodes.findIndex(
         (node) => node.id === edge.target
@@ -69,6 +81,7 @@ function useEdgeClick(id: EdgeProps["id"]) {
     });
   };
 
+  // Return edge click handler function
   return handleEdgeClick;
 }
 

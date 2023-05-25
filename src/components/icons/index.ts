@@ -3,7 +3,9 @@
  */
 
 import Archive from "./archive";
+import Bolt from "./bolt";
+import ChatBubble from "./chat-bubble";
 import Delete from "./delete";
 import UserPlus from "./user-plus";
 
-export { Archive, Delete, UserPlus };
+export { Archive, Bolt, ChatBubble, Delete, UserPlus };

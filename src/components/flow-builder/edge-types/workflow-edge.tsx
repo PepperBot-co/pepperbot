@@ -1,31 +1,42 @@
-import { getBezierPath, type EdgeProps } from "reactflow";
+import { getBezierPath, EdgeLabelRenderer } from "reactflow";
+import Plus from "@pb/components/icons/plus";
+
+import { type CustomEdgeProps } from "../flow-builder.types";
 
 import useEdgeClick from "../hooks/useEdgeClick";
 
+const EdgeButton = ({ onClick }: { onClick: () => void }) => (
+  <button
+    className="edgebutton [&>svg]:stroke-base-100"
+    onClick={onClick}
+    aria-label="Plus button"
+  >
+    <Plus />
+  </button>
+);
+
 export default function CustomEdge({
   id,
+  markerEnd,
+  sourcePosition,
   sourceX,
   sourceY,
+  style,
+  targetPosition,
   targetX,
   targetY,
-  sourcePosition,
-  targetPosition,
-  style,
-  markerEnd,
-}: EdgeProps) {
-  // see the hook for implementation details
-  // onClick adds a node in between the nodes that are connected by this edge
+}: CustomEdgeProps) {
   const onClick = useEdgeClick(id);
 
   const [edgePath, edgeCenterX, edgeCenterY] = getBezierPath({
+    sourcePosition,
     sourceX,
     sourceY,
-    sourcePosition,
+    targetPosition,
     targetX,
     targetY,
-    targetPosition,
   });
-  // stroke-1 stroke-base-content fill-none stroke-dasharray-3-3
+
   return (
     <>
       <path
@@ -35,25 +46,16 @@ export default function CustomEdge({
         d={edgePath}
         markerEnd={markerEnd}
       />
-      <g transform={`translate(${edgeCenterX}, ${edgeCenterY})`}>
-        <rect
-          onClick={onClick}
-          x={-10}
-          y={-10}
-          width={20}
-          ry={4}
-          rx={4}
-          height={20}
-          className="storke-base-content pointer-events-auto cursor-pointer fill-base-content"
-        />
-        <text
-          className="pointer-events-none select-none fill-primary"
-          y={5}
-          x={-4.5}
+      <EdgeLabelRenderer>
+        <div
+          className="nodrag nopan rounded-badge pointer-events-auto absolute flex h-10 w-10 items-center justify-center bg-base-content"
+          style={{
+            transform: `translate(-50%, -50%) translate(${edgeCenterX}px,${edgeCenterY}px)`,
+          }}
         >
-          +
-        </text>
-      </g>
+          <EdgeButton onClick={onClick} />
+        </div>
+      </EdgeLabelRenderer>
     </>
   );
 }

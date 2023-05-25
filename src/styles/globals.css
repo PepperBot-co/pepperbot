@@ -4,7 +4,10 @@
 
 @layer components {
     .node-primary {
-        @apply flex items-center justify-center rounded-lg w-40 h-12 bg-base-100 hover:bg-base-200 shadow-md border border-base-300 cursor-pointer;
+        @apply rounded-btn flex px-4 py-4 w-96 cursor-pointer items-center justify-start border border-base-300 bg-base-100 shadow-md hover:bg-base-200;
+    }
+    .node-action {
+        @apply invisible mr-2 flex h-14 w-14 items-center justify-center rounded-badge border border-base-300 bg-base-100 hover:bg-base-200 group-hover:visible;
     }
 }
 

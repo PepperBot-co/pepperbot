@@ -1,29 +1,7 @@
-import { Archive, UserPlus, Delete } from "@pb/components/icons";
-import { type ReactNode } from "react";
-
+/**
+ * Generate a unique identifier.
+ *
+ * @returns {string} - The generated unique identifier.
+ */
 export const uuid = (): string =>
   new Date().getTime().toString(36) + Math.random().toString(36).slice(2);
-
-type ActionItem = {
-  label: string;
-  icon?: ReactNode;
-};
-
-const actions: ActionItem[] = [
-  {
-    label: "Archive",
-    icon: <Archive />,
-  },
-  {
-    label: "Add User",
-    icon: <UserPlus />,
-  },
-  {
-    label: "Delete",
-    icon: <Delete />,
-  },
-];
-
-export const randomLabel = (): ActionItem => {
-  return actions[~~(Math.random() * actions.length)] as ActionItem;
-};

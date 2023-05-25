@@ -1,68 +1,47 @@
-import ReactFlow, {
-  Background,
-  Controls,
-  ReactFlowProvider,
-} from "reactflow";
-import type { Edge, Node, ProOptions } from "reactflow";
+import ReactFlow, { Background, Controls, ReactFlowProvider } from "reactflow";
+import { shallow } from "zustand/shallow";
+import useFlowStore, { flowSelector } from "@pb/components/flow-builder/store";
+
+import type { ProOptions } from "reactflow";
 
 import edgeTypes from "./edge-types";
 import nodeTypes from "./node-types";
 import useLayout from "./hooks/useLayout";
-import { randomLabel } from "./utils";
 
 import "reactflow/dist/style.css";
 
 const proOptions: ProOptions = { hideAttribution: true };
 
-const defaultNodes: Node[] = [
-  {
-    id: "1",
-    data: { label: randomLabel().label, icon: randomLabel().icon },
-    position: { x: 0, y: 0 },
-    type: "workflow",
-  },
-  {
-    id: "2",
-    data: { label: "+" },
-    position: { x: 0, y: 150 },
-    type: "placeholder",
-  },
-];
-
-// initial setup: connect the workflow node to the placeholder node with a placeholder edge
-const defaultEdges: Edge[] = [
-  {
-    id: "1=>2",
-    source: "1",
-    target: "2",
-    type: "placeholder",
-  },
-];
-
 const fitViewOptions = {
-  padding: 0.95,
+  padding: 0.3,
 };
 
 function ReactFlowPro() {
-  // this hook call ensures that the layout is re-calculated every time the graph changes
   useLayout();
+
+  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } =
+    useFlowStore(flowSelector, shallow);
 
   return (
     <>
       <ReactFlow
-        defaultEdges={defaultEdges}
-        defaultNodes={defaultNodes}
+        edges={edges}
         edgeTypes={edgeTypes}
         fitView
         fitViewOptions={fitViewOptions}
-        minZoom={0.2}
+        maxZoom={1}
+        minZoom={0.5}
+        nodes={nodes}
         nodesConnectable={false}
         nodesDraggable={false}
         nodeTypes={nodeTypes}
+        onConnect={onConnect}
+        onEdgesChange={onEdgesChange}
+        onNodesChange={onNodesChange}
         proOptions={proOptions}
         zoomOnDoubleClick={false}
       >
-        <Background />
+        <Background gap={25} />
         <Controls />
       </ReactFlow>
     </>
