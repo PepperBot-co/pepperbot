@@ -42,7 +42,7 @@ const Chat = () => {
             <p className="text-sm text-gray-500">Chat Subtitle</p>
           </div>
           <button
-            className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none"
+            className="rounded-md bg-primary px-4 py-2 text-white hover:bg-opacity-90 focus:outline-none"
             onClick={handleRefreshChat}
           >
             <div className="h-5px">
