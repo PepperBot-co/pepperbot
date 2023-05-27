@@ -10,10 +10,14 @@ const EdgeButton = ({ onClick }: { onClick: () => void }) => (
     className="edgebutton [&>svg]:stroke-base-100"
     onClick={onClick}
     aria-label="Plus button"
+    role="button"
+    tabIndex={0}
+    type="button"
   >
     <Plus />
   </button>
 );
+
 
 export default function CustomEdge({
   id,

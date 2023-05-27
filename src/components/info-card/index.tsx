@@ -13,7 +13,7 @@ const InfoCard: React.FC<InfoCardData> = ({
 }) => {
   return (
     <div className={`flex items-center gap-x-4 ${containerCustomClasses}`}>
-      <div className="rounded-badge inline-flex h-14 w-14 min-w-[3.5rem] items-center justify-center bg-base-200 md:min-h-16 md:h-16 md:w-16 md:min-w-[4rem]">
+      <div className="rounded-badge inline-flex h-14 w-14 min-w-[3.5rem] items-center justify-center bg-base-200">
         {icon}
       </div>
       <div className="flex flex-col gap-y-2">

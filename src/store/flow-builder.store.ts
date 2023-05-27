@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { initialNodes, initialEdges } from "@pb/constants";
 
 import type { Connection, EdgeChange, NodeChange } from "reactflow";
-import { type RFState } from "./flow-builder.types";
+import { type RFState } from "../components/flow-builder/flow-builder.types";
 
 /**
  * Selector function for extracting specific properties from the RFState.

@@ -47,7 +47,7 @@ function useEdgeClick(id: EdgeProps["id"]) {
     };
 
     // Define new edge from source node to new node
-    const sourceEdge = {
+    const newSourceEdge = {
       id: `${edge.source}->${insertNodeId}`,
       source: edge.source,
       target: insertNodeId,
@@ -55,28 +55,28 @@ function useEdgeClick(id: EdgeProps["id"]) {
     };
 
     // Define new edge from new node to target node
-    const targetEdge = {
+    const newTargetEdge = {
       id: `${insertNodeId}->${edge.target}`,
       source: insertNodeId,
       target: edge.target,
       type: "workflow",
     };
 
-    // Update edge list, replacing clicked edge with new edges
-    setEdges((edges) =>
-      edges.filter((e) => e.id !== id).concat([sourceEdge, targetEdge])
+    // Update edge list by replacing clicked edge with new edges
+    setEdges((prevEdges) =>
+      prevEdges.filter((e) => e.id !== id).concat([newSourceEdge, newTargetEdge])
     );
 
     // Insert new node at the position of the target node in the node list
-    setNodes((nodes) => {
-      const targetNodeIndex = nodes.findIndex(
+    setNodes((prevNodes) => {
+      const targetNodeIndex = prevNodes.findIndex(
         (node) => node.id === edge.target
       );
 
       return [
-        ...nodes.slice(0, targetNodeIndex),
+        ...prevNodes.slice(0, targetNodeIndex),
         insertNode,
-        ...nodes.slice(targetNodeIndex, nodes.length),
+        ...prevNodes.slice(targetNodeIndex, prevNodes.length),
       ];
     });
   };

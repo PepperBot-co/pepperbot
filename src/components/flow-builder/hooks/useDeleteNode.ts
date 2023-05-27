@@ -43,8 +43,8 @@ function useDeleteNode(id: string): () => void {
 
     // Delete any edges connected to the node by filtering them out of the edges array
     // Add the new edge if it exists
-    setEdges((edges) => [
-      ...edges.filter(
+    setEdges((prevEdges) => [
+      ...prevEdges.filter(
         (edge) =>
           !connectedEdges.some((connectedEdge) => connectedEdge.id === edge.id)
       ),
@@ -52,7 +52,7 @@ function useDeleteNode(id: string): () => void {
     ]);
 
     // Delete the node by filtering it out of the nodes array
-    setNodes((nodes) => nodes.filter((node) => node.id !== id));
+    setNodes((prevNodes) => prevNodes.filter((node) => node.id !== id));
   };
 
   return handleDeleteNode;

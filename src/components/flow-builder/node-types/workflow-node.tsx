@@ -5,7 +5,7 @@ import InfoCard from "@pb/components/info-card";
 
 import { type PBNodeProps } from "../flow-builder.types";
 
-import useDeleteClickHandler from "../hooks/useDeleteClick";
+import useDeleteClickHandler from "../hooks/useDeleteNode";
 
 const WorkflowNode = ({
   id,

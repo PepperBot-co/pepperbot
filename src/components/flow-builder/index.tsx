@@ -1,6 +1,6 @@
 import ReactFlow, { Background, Controls, ReactFlowProvider } from "reactflow";
 import { shallow } from "zustand/shallow";
-import useFlowStore, { flowSelector } from "@pb/components/flow-builder/store";
+import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
 
 import type { ProOptions } from "reactflow";
 
