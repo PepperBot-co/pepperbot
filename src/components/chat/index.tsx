@@ -1,16 +1,12 @@
 import { useState } from "react";
-import colors from "tailwindcss/colors";
 
 import ChatInput from "@pb/components/chat-input";
-import { ResetChat } from "@pb/components/icons";
+import ResetChat from "@pb/components/icons/reset-chat";
 
-type Message = {
-  sender: "user" | "bot";
-  message: string;
-};
+import { type MessageData } from "./chat.types";
 
 const Chat = () => {
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<MessageData[]>([
     {
       sender: "user",
       message: "Hello",
@@ -22,7 +18,7 @@ const Chat = () => {
   ]);
 
   const handleSendMessage = (message: string) => {
-    const newMessage: Message = {
+    const newMessage: MessageData = {
       sender: "user",
       message: message,
     };
@@ -36,7 +32,7 @@ const Chat = () => {
   return (
     <div className="flex h-[calc(100vh-65px)] flex-col border-l border-base-300 bg-base-100 p-5">
       <div className="p-4">
-        <div className="items-strat flex justify-between">
+        <div className="flex items-start justify-between">
           <div>
             <h1 className="text-xl font-bold">Chat Title</h1>
             <p className="text-sm text-gray-500">Chat Subtitle</p>
@@ -45,9 +41,7 @@ const Chat = () => {
             className="rounded-md bg-primary px-4 py-2 text-white hover:bg-opacity-90 focus:outline-none"
             onClick={handleRefreshChat}
           >
-            <div className="h-5px">
-              <ResetChat fill={colors.white} />
-            </div>
+            <ResetChat />
           </button>
         </div>
       </div>
@@ -55,7 +49,7 @@ const Chat = () => {
       <div className="flex-grow overflow-y-auto">
         {messages.map((message, index) => (
           <div
-            key={index}
+            key={`message-${index}`}
             className={`chat ${
               message.sender === "bot" ? "chat-end" : "chat-start"
             }`}
