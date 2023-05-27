@@ -40,6 +40,9 @@ const Chat = () => {
           <button
             className="rounded-md bg-primary px-4 py-2 text-white hover:bg-opacity-90 focus:outline-none"
             onClick={handleRefreshChat}
+            role="button"
+            tabIndex={0}
+            type="button"
           >
             <ResetChat />
           </button>
