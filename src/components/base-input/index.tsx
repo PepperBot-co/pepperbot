@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 
-import { type BaseInputData } from "./base-input.interface";
+import { type BaseInputData } from "./base-input.types";
 
 const inputTypeDefaultClasses = {
   textarea: "textarea-bordered textarea h-20",
-  input: "input input-bordered"
+  input: "input input-bordered",
 };
 
 const BaseInput: React.FC<BaseInputData> = ({
@@ -21,7 +21,9 @@ const BaseInput: React.FC<BaseInputData> = ({
     <div className={`form-control ${containerCustomClasses}`}>
       {label && (
         <div className="mb-4">
-          <label className={`label-text text-base md:text-lg ${labelCustomClasses}`}>
+          <label
+            className={`label-text text-base md:text-lg ${labelCustomClasses}`}
+          >
             {label}
           </label>
         </div>
@@ -29,7 +31,7 @@ const BaseInput: React.FC<BaseInputData> = ({
 
       {React.createElement(inputElement, {
         className: `${inputTypeDefaultClasses[inputElement]} ${inputCustomClasses}`,
-        ...restProps
+        ...restProps,
       })}
     </div>
   );

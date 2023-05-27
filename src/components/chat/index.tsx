@@ -1,26 +1,70 @@
-import { shallow } from "zustand/shallow";
-import useFlowStore, { flowSelector } from "@pb/components/flow-builder/store";
+import { useState } from "react";
 
-import { type PBNodeProps } from "../flow-builder/flow-builder.types";
+import ChatInput from "@pb/components/chat-input";
+import ResetChat from "@pb/components/icons/reset-chat";
 
-import InfoCard from "../info-card";
+import { type MessageData } from "./chat.types";
 
-// TODO(laithyounesy@gmail.com): This componenet is used to showcase the zustand data passing.
-const Chat: React.FC = () => {
-  const { nodes } = useFlowStore(flowSelector, shallow);
-  const selectedNode = nodes.find((node) => node.selected) as
-    | PBNodeProps
-    | undefined;
+const Chat = () => {
+  const [messages, setMessages] = useState<MessageData[]>([
+    {
+      sender: "user",
+      message: "Hello",
+    },
+    {
+      sender: "bot",
+      message: "Hi",
+    },
+  ]);
+
+  const handleSendMessage = (message: string) => {
+    const newMessage: MessageData = {
+      sender: "user",
+      message: message,
+    };
+    setMessages([...messages, newMessage]);
+  };
+
+  const handleRefreshChat = () => {
+    setMessages([]);
+  };
 
   return (
-    <div className="h-[calc(100vh-65px)] border-l border-base-300 bg-base-100 p-5">
-      {selectedNode && (
-        <InfoCard
-          description={selectedNode?.data?.description}
-          icon={selectedNode?.data?.icon}
-          title={selectedNode?.data?.label}
-        />
-      )}
+    <div className="flex h-[calc(100vh-65px)] flex-col border-l border-base-300 bg-base-100 p-5">
+      <div className="p-4">
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="text-xl font-bold">Chat Title</h1>
+            <p className="text-sm text-gray-500">Chat Subtitle</p>
+          </div>
+          <button
+            className="rounded-md bg-primary px-4 py-2 text-white hover:bg-opacity-90 focus:outline-none"
+            onClick={handleRefreshChat}
+            role="button"
+            tabIndex={0}
+            type="button"
+          >
+            <ResetChat />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex-grow overflow-y-auto">
+        {messages.map((message, index) => (
+          <div
+            key={`message-${index}`}
+            className={`chat ${
+              message.sender === "bot" ? "chat-end" : "chat-start"
+            }`}
+          >
+            <div className="chat-bubble">{message.message}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="p-4">
+        <ChatInput onSendMessage={handleSendMessage} />
+      </div>
     </div>
   );
 };
