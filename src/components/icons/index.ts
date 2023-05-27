@@ -1,5 +1,5 @@
 /**
- * the below icons are used from  https://heroico   ns.com/
+ * the below icons are used from https://heroicons.com/
  */
 
 import Archive from "./archive";
