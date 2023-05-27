@@ -8,7 +8,7 @@ import type { Node, Edge, ReactFlowState } from "reactflow";
 // initialize the tree layout (see https://observablehq.com/@d3/tree for examples)
 const layout = tree<Node>()
   // the node size configures the spacing between the nodes ([height, width])
-  .nodeSize([200, 150])
+  .nodeSize([400, 300])
   // this is needed for creating equal space between all nodes
   .separation(() => 1);
 
@@ -118,7 +118,7 @@ function useLayout() {
 
         // in the first run, fit the view
         if (!initial.current) {
-          fitView({ duration: 200, padding: 0.2 });
+          fitView({ duration: 200 });
         }
         initial.current = false;
       }

@@ -1,8 +1,8 @@
-import HeadMeta from "@pb/components/head-meta";
-import TwoColumnLayout from "@pb/components/layout/two-column";
+import Chat from "@pb/components/chat";
 import FlowBuilder from "@pb/components/flow-builder";
 import Header from "@pb/components/header";
-import Chat from "@pb/components/chat";
+import HeadMeta from "@pb/components/head-meta";
+import TwoColumnLayout from "@pb/components/layout/two-column";
 
 import { type NextPage } from "next";
 

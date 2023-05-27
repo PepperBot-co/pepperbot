@@ -1,11 +1,13 @@
 /**
- * the below icons are used from  https://heroico   ns.com/
+ * the below icons are used from https://heroicons.com/
  */
 
 import Archive from "./archive";
+import Bolt from "./bolt";
+import ChatBubble from "./chat-bubble";
 import Delete from "./delete";
-import UserPlus from "./user-plus";
-import SendArrow from "./send-arrow";
 import ResetChat from "./reset-chat";
+import SendArrow from "./send-arrow";
+import UserPlus from "./user-plus";
 
-export { Archive, Delete, UserPlus, SendArrow, ResetChat };
+export { Archive, Bolt, ChatBubble, Delete, ResetChat, SendArrow, UserPlus };
