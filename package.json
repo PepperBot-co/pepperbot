@@ -7,6 +7,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "start": "next start",
     "prisma:generate": "prisma generate"
   },
@@ -47,6 +48,9 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.41.0",
     "eslint-config-next": "^13.4.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
