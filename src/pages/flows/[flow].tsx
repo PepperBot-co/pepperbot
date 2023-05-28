@@ -1,9 +1,8 @@
 import Chat from "@pb/components/chat";
 import FlowBuilder from "@pb/components/flow-builder";
-import Header from "@pb/components/header";
 import HeadMeta from "@pb/components/head-meta";
+import Header from "@pb/components/header";
 import TwoColumnLayout from "@pb/components/layout/two-column";
-
 import { type NextPage } from "next";
 
 const Flow: NextPage = () => {

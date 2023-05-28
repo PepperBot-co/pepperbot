@@ -1,9 +1,8 @@
 import Card from "@pb/components/card";
 import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
-
-import { type NextPage } from "next";
 import { type CardData } from "@pb/types";
+import { type NextPage } from "next";
 
 const cardData: CardData[] = [
   {

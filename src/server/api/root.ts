@@ -1,5 +1,5 @@
-import { createTRPCRouter } from "@pb/server/api/trpc";
 import { exampleRouter } from "@pb/server/api/routers/example";
+import { createTRPCRouter } from "@pb/server/api/trpc";
 
 /**
  * This is the primary router for your server.

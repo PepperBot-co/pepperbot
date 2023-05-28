@@ -1,9 +1,8 @@
 import { stratify, tree } from "d3-hierarchy";
 import { timer } from "d3-timer";
 import { useEffect, useRef } from "react";
+import type { Edge, Node, ReactFlowState } from "reactflow";
 import { useReactFlow, useStore } from "reactflow";
-
-import type { Node, Edge, ReactFlowState } from "reactflow";
 
 // initialize the tree layout (see https://observablehq.com/@d3/tree for examples)
 const layout = tree<Node>()

@@ -1,4 +1,4 @@
-import { useReactFlow, getConnectedEdges } from "reactflow";
+import { getConnectedEdges, useReactFlow } from "reactflow";
 
 /**
  * Custom hook that generates a function to handle node deletion in a ReactFlow graph.

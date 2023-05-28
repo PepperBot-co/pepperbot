@@ -1,5 +1,4 @@
 import { Bolt, ChatBubble } from "@pb/components/icons";
-
 import type { Edge, Node } from "reactflow";
 
 export const initialNodes: Node[] = [

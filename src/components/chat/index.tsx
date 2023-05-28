@@ -1,7 +1,6 @@
-import { useState } from "react";
-
 import ChatInput from "@pb/components/chat-input";
 import ResetChat from "@pb/components/icons/reset-chat";
+import { useState } from "react";
 
 import { type MessageData } from "./chat.types";
 
@@ -11,6 +10,7 @@ const Chat = () => {
       sender: "user",
       message: "Hello",
     },
+
     {
       sender: "bot",
       message: "Hi",

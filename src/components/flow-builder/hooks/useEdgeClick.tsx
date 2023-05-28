@@ -1,5 +1,5 @@
-import { useReactFlow, type EdgeProps } from "reactflow";
 import { ChatBubble } from "@pb/components/icons";
+import { type EdgeProps, useReactFlow } from "reactflow";
 
 import { uuid } from "../utils";
 
@@ -64,7 +64,9 @@ function useEdgeClick(id: EdgeProps["id"]) {
 
     // Update edge list by replacing clicked edge with new edges
     setEdges((prevEdges) =>
-      prevEdges.filter((e) => e.id !== id).concat([newSourceEdge, newTargetEdge])
+      prevEdges
+        .filter((e) => e.id !== id)
+        .concat([newSourceEdge, newTargetEdge])
     );
 
     // Insert new node at the position of the target node in the node list

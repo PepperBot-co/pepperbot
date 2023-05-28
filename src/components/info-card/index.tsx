@@ -9,7 +9,7 @@ const InfoCard: React.FC<InfoCardData> = ({
   icon,
   title,
   description = "",
-  containerCustomClasses = ""
+  containerCustomClasses = "",
 }) => {
   return (
     <div className={`flex items-center gap-x-4 ${containerCustomClasses}`}>

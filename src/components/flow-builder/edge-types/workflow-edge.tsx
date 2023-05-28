@@ -1,8 +1,7 @@
-import { getBezierPath, EdgeLabelRenderer } from "reactflow";
 import Plus from "@pb/components/icons/plus";
+import { EdgeLabelRenderer, getBezierPath } from "reactflow";
 
 import { type CustomEdgeProps } from "../flow-builder.types";
-
 import useEdgeClick from "../hooks/useEdgeClick";
 
 const EdgeButton = ({ onClick }: { onClick: () => void }) => (
@@ -17,7 +16,6 @@ const EdgeButton = ({ onClick }: { onClick: () => void }) => (
     <Plus />
   </button>
 );
-
 
 export default function CustomEdge({
   id,

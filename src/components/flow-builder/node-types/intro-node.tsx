@@ -1,9 +1,8 @@
-import { Handle, Position } from "reactflow";
+import InfoCard from "@pb/components/info-card";
 import { memo } from "react";
+import { Handle, Position } from "reactflow";
 
 import { type PBNodeProps } from "../flow-builder.types";
-
-import InfoCard from "@pb/components/info-card";
 
 const IntroNode = ({ data, selected }: PBNodeProps) => {
   return (

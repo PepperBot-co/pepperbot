@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { memo, useEffect, useState } from "react";
 
 import type { CheckboxGroupProps, CheckboxValue } from "./checkbox-group.types";
 
@@ -21,7 +21,9 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
    * @param {React.ChangeEvent<HTMLInputElement>} event - The change event object.
    * @returns {void} - Returns nothing.
    */
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const { value, checked } = event.target;
 
     const updatedValues = checked
