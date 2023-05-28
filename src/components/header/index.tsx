@@ -1,6 +1,6 @@
-import { themeChange } from "theme-change";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { themeChange } from "theme-change";
 
 const themeOptions = [
   { value: "", label: "Default" },

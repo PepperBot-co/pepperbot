@@ -1,7 +1,6 @@
-import { useState } from "react";
-
 import ChatInput from "@pb/components/chat-input";
 import ResetChat from "@pb/components/icons/reset-chat";
+import { useState } from "react";
 
 import { type MessageData } from "./chat.types";
 
@@ -11,6 +10,7 @@ const Chat = () => {
       sender: "user",
       message: "Hello",
     },
+
     {
       sender: "bot",
       message: "Hi",
@@ -32,7 +32,7 @@ const Chat = () => {
   return (
     <div className="flex h-[calc(100vh-65px)] flex-col border-l border-base-300 bg-base-100 p-5">
       <div className="p-4">
-        <div className="flex items-start justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold">Chat Title</h1>
             <p className="text-sm text-gray-500">Chat Subtitle</p>

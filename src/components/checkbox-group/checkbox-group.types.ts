@@ -6,7 +6,10 @@ type CheckboxData = {
   checked?: boolean;
 };
 
-type ComponentPropsWithoutOnChange = Omit<React.HTMLProps<HTMLInputElement>, 'onChange'>;
+type ComponentPropsWithoutOnChange = Omit<
+  React.HTMLProps<HTMLInputElement>,
+  "onChange"
+>;
 
 interface ComponentCustomClasses extends ComponentPropsWithoutOnChange {
   titleCustomClasses?: string;

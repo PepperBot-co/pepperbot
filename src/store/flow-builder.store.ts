@@ -1,8 +1,8 @@
+import { initialEdges, initialNodes } from "@pb/constants";
+import type { Connection, EdgeChange, NodeChange } from "reactflow";
 import { addEdge, applyEdgeChanges, applyNodeChanges } from "reactflow";
 import { create } from "zustand";
-import { initialNodes, initialEdges } from "@pb/constants";
 
-import type { Connection, EdgeChange, NodeChange } from "reactflow";
 import { type RFState } from "../components/flow-builder/flow-builder.types";
 
 /**

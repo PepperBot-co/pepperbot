@@ -1,7 +1,6 @@
-import { useState, type KeyboardEvent } from "react";
-
 import BaseInput from "@pb/components/base-input";
 import SendArrow from "@pb/components/icons/send-arrow";
+import { type KeyboardEvent, useState } from "react";
 
 import { type ChatInputProps } from "./chat-input.types";
 

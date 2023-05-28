@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "*************** PRE-COMMIT HOOK ***************"
+echo "Running next lint"
+echo "In case of errors, please run 'pnpm run lint' manually to see the errors"
+echo "Alternatively, you can run 'pnpm run lint:fix' to fix the errors automatically"
+echo "************************************************"
+pnpm run lint

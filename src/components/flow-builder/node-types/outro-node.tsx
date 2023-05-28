@@ -1,6 +1,6 @@
-import { Handle, Position } from "reactflow";
-import { memo } from "react";
 import InfoCard from "@pb/components/info-card";
+import { memo } from "react";
+import { Handle, Position } from "reactflow";
 
 import { type PBNodeProps } from "../flow-builder.types";
 
