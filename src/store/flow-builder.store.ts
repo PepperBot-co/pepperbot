@@ -46,4 +46,29 @@ const useFlowStore = create<RFState>((set, get) => {
   };
 });
 
+/**
+ * const useFlowStore = (initialValues) => {
+  return create<RFState>((set, get) => {
+    return {
+      ...initialValues,
+      onNodesChange: (changes: NodeChange[]) => {
+        set({
+          nodes: applyNodeChanges(changes, get().nodes),
+        });
+      },
+      onEdgesChange: (changes: EdgeChange[]) => {
+        set({
+          edges: applyEdgeChanges(changes, get().edges),
+        });
+      },
+      onConnect: (connection: Connection) => {
+        set({
+          edges: addEdge(connection, get().edges),
+        });
+      },
+    };
+  });
+};
+ */
+
 export default useFlowStore;
