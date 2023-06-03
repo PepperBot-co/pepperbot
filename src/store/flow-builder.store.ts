@@ -3,7 +3,10 @@ import type { Connection, EdgeChange, NodeChange } from "reactflow";
 import { addEdge, applyEdgeChanges, applyNodeChanges } from "reactflow";
 import { create } from "zustand";
 
-import { type RFState } from "../components/flow-builder/flow-builder.types";
+import type {
+  PBNode,
+  RFState,
+} from "../components/flow-builder/flow-builder.types";
 
 /**
  * Selector function for extracting specific properties from the RFState.
@@ -41,6 +44,17 @@ const useFlowStore = create<RFState>((set, get) => {
     onConnect: (connection: Connection) => {
       set({
         edges: addEdge(connection, get().edges),
+      });
+    },
+    updateNodeConfigs: (nodeId: string, key: string, value: string) => {
+      set({
+        nodes: get().nodes.map((node: PBNode) => {
+          if (node.id === nodeId) {
+            node.data.nodeConfigs = { ...node.data.nodeConfigs, [key]: value };
+          }
+
+          return node;
+        }),
       });
     },
   };
