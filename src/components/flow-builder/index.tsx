@@ -15,42 +15,40 @@ const fitViewOptions = {
   padding: 0.3,
 };
 
-function ReactFlowPro() {
+function ReactFlowView() {
   useLayout();
 
   const { nodes, edges, onNodesChange, onEdgesChange, onConnect } =
     useFlowStore(flowSelector, shallow);
 
   return (
-    <>
-      <ReactFlow
-        edges={edges}
-        edgeTypes={edgeTypes}
-        fitView
-        fitViewOptions={fitViewOptions}
-        maxZoom={1}
-        minZoom={0.5}
-        nodes={nodes}
-        nodesConnectable={false}
-        nodesDraggable={false}
-        nodeTypes={nodeTypes}
-        onConnect={onConnect}
-        onEdgesChange={onEdgesChange}
-        onNodesChange={onNodesChange}
-        proOptions={proOptions}
-        zoomOnDoubleClick={false}
-      >
-        <Background gap={25} />
-        <Controls />
-      </ReactFlow>
-    </>
+    <ReactFlow
+      edges={edges}
+      edgeTypes={edgeTypes}
+      fitView
+      fitViewOptions={fitViewOptions}
+      maxZoom={1}
+      minZoom={0.5}
+      nodes={nodes}
+      nodesConnectable={false}
+      nodesDraggable={false}
+      nodeTypes={nodeTypes}
+      onConnect={onConnect}
+      onEdgesChange={onEdgesChange}
+      onNodesChange={onNodesChange}
+      proOptions={proOptions}
+      zoomOnDoubleClick={false}
+    >
+      <Background gap={25} />
+      <Controls />
+    </ReactFlow>
   );
 }
 
 function ReactFlowWrapper() {
   return (
     <ReactFlowProvider>
-      <ReactFlowPro />
+      <ReactFlowView />
     </ReactFlowProvider>
   );
 }
