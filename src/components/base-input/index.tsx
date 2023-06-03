@@ -3,8 +3,8 @@ import React, { memo } from "react";
 import { type BaseInputData } from "./base-input.types";
 
 const inputTypeDefaultClasses = {
-  textarea: "textarea-bordered textarea h-20",
-  input: "input input-bordered",
+  textarea: "textarea-bordered textarea h-20 placeholder-base-content/60",
+  input: "input input-bordered placeholder-base-content/60",
 };
 
 const BaseInput: React.FC<BaseInputData> = ({
