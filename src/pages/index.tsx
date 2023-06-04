@@ -1,7 +1,7 @@
 import Card from "@pb/components/card";
+import { type CardData } from "@pb/components/card/card.types";
 import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
-import { type CardData } from "@pb/types";
 import { type NextPage } from "next";
 
 const cardData: CardData[] = [
