@@ -2,17 +2,18 @@ import useFlowStore from "@pb/store/flow-builder.store";
 import React, { useCallback, useEffect, useState } from "react";
 
 import BaseInput from "../base-input";
-import { type PBNodeProps } from "../flow-builder/flow-builder.types";
+import type { PBNodeProps } from "../flow-builder/flow-builder.types";
 import InfoCard from "../info-card";
 
 type UpdateNodeConfig = (
   key: string
 ) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 
-const NodeConfigurator = ({ data, id }: PBNodeProps) => {
+const NodeOptionsForm = ({ id, data }: PBNodeProps) => {
+  const { updateNodeConfigs } = useFlowStore();
+
   const { description, icon, label, nodeConfigs: initialNodeConfigs } = data;
   const [nodeConfigs, setNodeConfigs] = useState(initialNodeConfigs);
-  const { updateNodeConfigs } = useFlowStore();
 
   useEffect(() => {
     setNodeConfigs(initialNodeConfigs);
@@ -59,4 +60,4 @@ const NodeConfigurator = ({ data, id }: PBNodeProps) => {
   );
 };
 
-export default NodeConfigurator;
+export default NodeOptionsForm;

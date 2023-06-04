@@ -40,7 +40,7 @@ const ChatInput = ({ onSendMessage }: ChatInputProps) => {
         tabIndex={0}
       />
       <button
-        className="h-full rounded-r-md bg-primary px-4 py-3 text-white hover:bg-opacity-90 focus:outline-none"
+        className="h-full rounded-r-md bg-primary px-4 py-3 text-base-100 hover:bg-opacity-90 focus:outline-none"
         onClick={handleSendMessage}
         role="button"
         tabIndex={0}

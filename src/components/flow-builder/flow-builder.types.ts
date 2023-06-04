@@ -7,6 +7,7 @@ import type {
   OnConnect,
   OnEdgesChange,
   OnNodesChange,
+  OnSelectionChangeFunc,
 } from "reactflow";
 
 export interface PBNode extends Node {
@@ -40,11 +41,22 @@ export type CustomEdgeProps = EdgeProps & {
   style?: React.CSSProperties;
 };
 
+export enum FlowMode {
+  Edit,
+  Test,
+  Locked,
+}
+
 export type RFState = {
   edges: Edge[];
+  flowMode: FlowMode;
   nodes: Node[];
+  selectedNode: Node | undefined;
+  deselectNodes: () => void;
   onConnect: OnConnect;
   onEdgesChange: OnEdgesChange;
   onNodesChange: OnNodesChange;
+  onSelectionChange: OnSelectionChangeFunc;
+  updateFlowMode: (flowMode: FlowMode) => void;
   updateNodeConfigs: (nodeId: string, key: string, value: string) => void;
 };

@@ -1,3 +1,4 @@
+import useFlowStore from "@pb/store/flow-builder.store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { themeChange } from "theme-change";
@@ -37,6 +38,8 @@ const themeOptions = [
 
 const Header: React.FC = () => {
   const [theme, setTheme] = useState("");
+  const { updateFlowMode, flowMode } = useFlowStore();
+  const showChat = flowMode === 1;
 
   useEffect(() => {
     themeChange(false);
@@ -57,19 +60,29 @@ const Header: React.FC = () => {
         </Link>
       </div>
       <div className="flex-none">
-        <select
-          className="select w-full max-w-sm border-base-300"
-          data-choose-theme
-          value={theme}
-          onChange={handleThemeChange}
+        <div className="dropdown-end dropdown">
+          <select
+            className="select w-full max-w-sm border-base-300 focus:outline-none"
+            data-choose-theme
+            value={theme}
+            onChange={handleThemeChange}
+          >
+            <option disabled>Pick a theme</option>
+            {themeOptions.map((theme) => (
+              <option key={theme.value} value={theme.value}>
+                {theme.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          onClick={() => updateFlowMode(showChat ? 0 : 1)}
+          className={`btn mx-3 max-w-sm px-3 normal-case ${
+            showChat ? "btn-primary" : "btn-ghost"
+          }`}
         >
-          <option disabled>Pick a theme</option>
-          {themeOptions.map((theme) => (
-            <option key={theme.value} value={theme.value}>
-              {theme.label}
-            </option>
-          ))}
-        </select>
+          {showChat ? "Exit Test" : "Test"}
+        </button>
       </div>
     </div>
   );

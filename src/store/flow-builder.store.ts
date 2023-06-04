@@ -1,25 +1,38 @@
 import { initialEdges, initialNodes } from "@pb/constants";
-import type { Connection, EdgeChange, NodeChange } from "reactflow";
+import type {
+  Connection,
+  EdgeChange,
+  NodeChange,
+  OnSelectionChangeParams,
+} from "reactflow";
 import { addEdge, applyEdgeChanges, applyNodeChanges } from "reactflow";
 import { create } from "zustand";
 
 import type {
+  FlowMode,
   PBNode,
   RFState,
 } from "../components/flow-builder/flow-builder.types";
 
 /**
  * Selector function for extracting specific properties from the RFState.
+ * Order changed to have variables ordered alphabetically and function alphabetically
  *
  * @param {RFState} state - The RFState object.
  * @returns {Object} - The extracted properties from the state.
  */
 export const flowSelector = (state: RFState) => ({
-  nodes: state.nodes,
   edges: state.edges,
-  onNodesChange: state.onNodesChange,
-  onEdgesChange: state.onEdgesChange,
+  flowMode: state.flowMode,
+  nodes: state.nodes,
+  selectedNode: state.selectedNode,
+  deselectNodes: state.deselectNodes,
   onConnect: state.onConnect,
+  onEdgesChange: state.onEdgesChange,
+  onNodesChange: state.onNodesChange,
+  onSelectionChange: state.onSelectionChange,
+  updateFlowMode: state.updateFlowMode,
+  updateNodeConfigs: state.updateNodeConfigs,
 });
 
 /**
@@ -29,11 +42,21 @@ export const flowSelector = (state: RFState) => ({
  */
 const useFlowStore = create<RFState>((set, get) => {
   return {
-    nodes: initialNodes,
     edges: initialEdges,
-    onNodesChange: (changes: NodeChange[]) => {
+    flowMode: 0,
+    nodes: initialNodes,
+    selectedNode: undefined,
+    deselectNodes: () => {
       set({
-        nodes: applyNodeChanges(changes, get().nodes),
+        nodes: get().nodes.map((node: PBNode) => ({
+          ...node,
+          selected: false,
+        })),
+      });
+    },
+    onConnect: (connection: Connection) => {
+      set({
+        edges: addEdge(connection, get().edges),
       });
     },
     onEdgesChange: (changes: EdgeChange[]) => {
@@ -41,9 +64,21 @@ const useFlowStore = create<RFState>((set, get) => {
         edges: applyEdgeChanges(changes, get().edges),
       });
     },
-    onConnect: (connection: Connection) => {
+    onNodesChange: (changes: NodeChange[]) => {
       set({
-        edges: addEdge(connection, get().edges),
+        nodes: applyNodeChanges(changes, get().nodes),
+      });
+    },
+    onSelectionChange: (params: OnSelectionChangeParams) => {
+      set({
+        selectedNode: params.nodes.find((node) => node.selected) || undefined,
+      });
+    },
+    updateFlowMode: (flowMode: FlowMode) => {
+      get().deselectNodes();
+
+      set({
+        flowMode: flowMode,
       });
     },
     updateNodeConfigs: (nodeId: string, key: string, value: string) => {

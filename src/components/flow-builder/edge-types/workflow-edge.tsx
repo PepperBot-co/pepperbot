@@ -6,7 +6,7 @@ import useEdgeClick from "../hooks/useEdgeClick";
 
 const EdgeButton = ({ onClick }: { onClick: () => void }) => (
   <button
-    className="edgebutton [&>svg]:stroke-base-100"
+    className="[&>svg]:stroke-base-100"
     onClick={onClick}
     aria-label="Plus button"
     role="button"
