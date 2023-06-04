@@ -4,10 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import BaseInput from "../base-input";
 import type { PBNodeProps } from "../flow-builder/flow-builder.types";
 import InfoCard from "../info-card";
-
-type UpdateNodeConfig = (
-  key: string
-) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+import { type UpdateNodeConfig } from "./node-options-form.types";
 
 const NodeOptionsForm = ({ id, data }: PBNodeProps) => {
   const { updateNodeConfigs } = useFlowStore();
