@@ -4,11 +4,12 @@ import type { PBNodeProps } from "@pb/components/flow-builder/flow-builder.types
 import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
 import NodeOptionsForm from "@pb/components/node-options-form";
-import useFlowStore from "@pb/store/flow-builder.store";
+import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
 import { type NextPage } from "next";
+import { shallow } from "zustand/shallow";
 
 const Flow: NextPage = () => {
-  const { flowMode, selectedNode } = useFlowStore();
+  const { flowMode, selectedNode } = useFlowStore(flowSelector, shallow);
   const showChat = flowMode === 1;
   const showConfigs = !!selectedNode && !showChat;
 

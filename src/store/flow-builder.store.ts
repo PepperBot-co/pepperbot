@@ -33,6 +33,7 @@ export const flowSelector = (state: RFState) => ({
   onSelectionChange: state.onSelectionChange,
   updateFlowMode: state.updateFlowMode,
   updateNodeConfigs: state.updateNodeConfigs,
+  updateSelectedNode: state.updateSelectedNode,
 });
 
 /**
@@ -86,6 +87,19 @@ const useFlowStore = create<RFState>((set, get) => {
         nodes: get().nodes.map((node: PBNode) => {
           if (node.id === nodeId) {
             node.data.nodeConfigs = { ...node.data.nodeConfigs, [key]: value };
+          }
+
+          return node;
+        }),
+      });
+    },
+    updateSelectedNode: (nodeId: string) => {
+      set({
+        nodes: get().nodes.map((node: PBNode) => {
+          if (node.id === nodeId) {
+            node.selected = true;
+          } else {
+            node.selected = false;
           }
 
           return node;

@@ -50,7 +50,7 @@ export const initialNodes: Node[] = [
       },
     },
     position: { x: 0, y: 600 },
-    type: "outro",
+    type: "workflow",
     selected: false,
     selectable: true,
   },

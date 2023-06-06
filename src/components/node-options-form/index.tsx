@@ -1,5 +1,6 @@
-import useFlowStore from "@pb/store/flow-builder.store";
+import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
 import React, { useCallback, useEffect, useState } from "react";
+import { shallow } from "zustand/shallow";
 
 import BaseInput from "../base-input";
 import type { PBNodeProps } from "../flow-builder/flow-builder.types";
@@ -7,7 +8,7 @@ import InfoCard from "../info-card";
 import { type UpdateNodeConfig } from "./node-options-form.types";
 
 const NodeOptionsForm = ({ id, data }: PBNodeProps) => {
-  const { updateNodeConfigs } = useFlowStore();
+  const { updateNodeConfigs } = useFlowStore(flowSelector, shallow);
 
   const { description, icon, label, nodeConfigs: initialNodeConfigs } = data;
   const [nodeConfigs, setNodeConfigs] = useState(initialNodeConfigs);

@@ -1,26 +1,13 @@
 import ChatInput from "@pb/components/chat-input";
 import ResetChat from "@pb/components/icons/reset-chat";
-import useFlowStore from "@pb/store/flow-builder.store";
-import { useState } from "react";
+import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
+import { shallow } from "zustand/shallow";
 
-import { type MessageData } from "./chat.types";
+import { useChatHandler } from "./useChatHandler";
 
 const Chat = () => {
-  const [messages, setMessages] = useState<MessageData[]>([
-    {
-      sender: "bot",
-      message: "Hi, How is your day going so far?",
-    },
-  ]);
-  const { updateFlowMode } = useFlowStore();
-
-  const handleSendMessage = (message: string) => {
-    const newMessage: MessageData = {
-      sender: "user",
-      message: message,
-    };
-    setMessages([...messages, newMessage]);
-  };
+  const { messages, setMessages, sendMessage } = useChatHandler();
+  const { updateFlowMode } = useFlowStore(flowSelector, shallow);
 
   const handleRefreshChat = () => {
     setMessages([]);
@@ -67,7 +54,7 @@ const Chat = () => {
         </div>
 
         <div className="p-4">
-          <ChatInput onSendMessage={handleSendMessage} />
+          <ChatInput onSendMessage={sendMessage} />
         </div>
       </div>
     </>

@@ -13,7 +13,7 @@ import type {
 export interface PBNode extends Node {
   data: {
     nodeConfigs: {
-      [key: string]: string;
+      [key: string]: string | boolean;
     };
   };
 }
@@ -22,6 +22,7 @@ type nodeConfigs = {
   type?: string;
   message?: string;
   expectedAnswer?: string;
+  focused?: boolean;
 };
 
 type NodeData = {
@@ -59,4 +60,5 @@ export type RFState = {
   onSelectionChange: OnSelectionChangeFunc;
   updateFlowMode: (flowMode: FlowMode) => void;
   updateNodeConfigs: (nodeId: string, key: string, value: string) => void;
+  updateSelectedNode: (nodeId: string) => void;
 };
