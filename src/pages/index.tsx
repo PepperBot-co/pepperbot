@@ -26,10 +26,8 @@ const cardData: CardData[] = [
 ];
 
 const Home: NextPage = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
-
-  console.log({ session });
 
   if (status === "loading") {
     return (
