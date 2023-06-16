@@ -93,7 +93,11 @@ const useFlowStore = create<RFState>((set, get) => {
         }),
       });
     },
-    updateSelectedNode: (nodeId: string) => {
+    updateSelectedNode: (nodeId?: string) => {
+      if (!nodeId) {
+        return;
+      }
+
       set({
         nodes: get().nodes.map((node: PBNode) => {
           if (node.id === nodeId) {

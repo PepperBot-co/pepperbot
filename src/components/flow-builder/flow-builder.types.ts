@@ -60,5 +60,5 @@ export type RFState = {
   onSelectionChange: OnSelectionChangeFunc;
   updateFlowMode: (flowMode: FlowMode) => void;
   updateNodeConfigs: (nodeId: string, key: string, value: string) => void;
-  updateSelectedNode: (nodeId: string) => void;
+  updateSelectedNode: (nodeId?: string) => void;
 };

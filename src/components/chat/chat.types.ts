@@ -15,3 +15,13 @@ const flowMessagesSchema = z.object({
 });
 
 export type FlowMessages = z.infer<typeof flowMessagesSchema>;
+
+const chatHandlerSchema = z.object({
+  activeNode: z.number(),
+  messages: z.array(messageSchema),
+  sendMessage: z.function(z.tuple([z.string()]), z.void()),
+  setMessages: z.function(z.tuple([z.array(messageSchema)]), z.void()),
+  flowMessages: z.array(flowMessagesSchema),
+});
+
+export type ChatHandler = z.infer<typeof chatHandlerSchema>;
