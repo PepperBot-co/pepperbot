@@ -3,8 +3,6 @@ import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
 import { type CardData } from "@pb/types";
 import { type NextPage } from "next";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 const cardData: CardData[] = [
   {
@@ -26,23 +24,6 @@ const cardData: CardData[] = [
 ];
 
 const Home: NextPage = () => {
-  const { status } = useSession();
-  const router = useRouter();
-
-  if (status === "loading") {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (status === "unauthenticated") {
-    router.replace("/api/auth/signin");
-
-    return <></>;
-  }
-
   return (
     <>
       <HeadMeta title="PepperBot | Demo" />
