@@ -1,12 +1,34 @@
 import useThemeController from "@pb/hooks/useThemeController";
 import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { shallow } from "zustand/shallow";
+
+/**
+ * This function checks whether the given path follows a specific pattern.
+ * Define a regular expression pattern to check the path.
+ * This pattern follows these rules:
+ *   - `^` denotes the start of the string.
+ *   - `\/flows\/` is the literal string "/flows/". The backslashes are used to escape the forward slashes.
+ *   - `[^\/]*` matches any character that is not `/` (i.e., not a segment separator) between zero and unlimited times.
+ *     This ensures that there is only one segment after "/flows/".
+ *   - `$` denotes the end of the string.
+ * @param path {string} The path to check.
+ * @returns {boolean} Returns true if the path follows the pattern, false otherwise.
+ */
+function isFlowPath(path: string): boolean {
+  const pattern = /^\/flows\/[^\/]*$/;
+
+  // It returns true if the path matches, false otherwise.
+  return pattern.test(path);
+}
 
 const Header: React.FC = () => {
   const { updateFlowMode, flowMode } = useFlowStore(flowSelector, shallow);
   const showChat = flowMode === 1;
   const { theme, themeOptions, setTheme } = useThemeController();
+  const { asPath } = useRouter();
+  const isFlowPage = isFlowPath(asPath);
 
   return (
     <div className="navbar border-b border-base-300 bg-base-100">
@@ -35,14 +57,16 @@ const Header: React.FC = () => {
             ))}
           </select>
         </div>
-        <button
-          onClick={() => updateFlowMode(showChat ? 0 : 1)}
-          className={`btn mx-3 max-w-sm px-3 normal-case ${
-            showChat ? "btn-primary" : "btn-ghost"
-          }`}
-        >
-          {showChat ? "Exit Test" : "Test"}
-        </button>
+        {isFlowPage && (
+          <button
+            onClick={() => updateFlowMode(showChat ? 0 : 1)}
+            className={`btn mx-3 max-w-sm px-3 normal-case ${
+              showChat ? "btn-primary" : "btn-ghost"
+            }`}
+          >
+            {showChat ? "Exit Test" : "Test"}
+          </button>
+        )}
       </div>
     </div>
   );
