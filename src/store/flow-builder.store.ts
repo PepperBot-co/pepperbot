@@ -44,7 +44,7 @@ export const flowSelector = (state: RFState) => ({
 const useFlowStore = create<RFState>((set, get) => {
   return {
     edges: initialEdges,
-    flowMode: 0,
+    flowMode: "Edit",
     nodes: initialNodes,
     selectedNode: undefined,
     deselectNodes: () => {

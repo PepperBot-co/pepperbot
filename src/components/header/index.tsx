@@ -25,7 +25,7 @@ function isFlowPath(path: string): boolean {
 
 const Header: React.FC = () => {
   const { updateFlowMode, flowMode } = useFlowStore(flowSelector, shallow);
-  const showChat = flowMode === 1;
+  const showChat = flowMode === "Test";
   const { theme, themeOptions, setTheme } = useThemeController();
   const { asPath } = useRouter();
   const isFlowPage = isFlowPath(asPath);
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
         </div>
         {isFlowPage && (
           <button
-            onClick={() => updateFlowMode(showChat ? 0 : 1)}
+            onClick={() => updateFlowMode(showChat ? "Edit" : "Test")}
             className={`btn mx-3 max-w-sm px-3 normal-case ${
               showChat ? "btn-primary" : "btn-ghost"
             }`}

@@ -10,7 +10,7 @@ import { shallow } from "zustand/shallow";
 
 const Flow: NextPage = () => {
   const { flowMode, selectedNode } = useFlowStore(flowSelector, shallow);
-  const showChat = flowMode === 1;
+  const showChat = flowMode === "Test";
   const showConfigs = !!selectedNode && !showChat;
 
   return (

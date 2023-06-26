@@ -16,7 +16,7 @@ const Chat = () => {
   return (
     <>
       <div
-        onClick={() => updateFlowMode(0)}
+        onClick={() => updateFlowMode("Edit")}
         className="absolute h-[calc(100vh-65px)] w-[50vw]"
       />
       <div className="flex h-[calc(100vh-65px)] w-[50vw] flex-col border-l border-base-300 bg-base-100 p-5">

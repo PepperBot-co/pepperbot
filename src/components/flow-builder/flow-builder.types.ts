@@ -42,11 +42,7 @@ export type CustomEdgeProps = EdgeProps & {
   style?: React.CSSProperties;
 };
 
-export enum FlowMode {
-  Edit,
-  Test,
-  Locked,
-}
+export type FlowMode = "Edit" | "Test" | "Locked";
 
 export type RFState = {
   edges: Edge[];
