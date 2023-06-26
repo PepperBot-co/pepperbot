@@ -51,7 +51,7 @@ export default function CustomEdge({
         d={edgePath}
         markerEnd={markerEnd}
       />
-      {flowMode !== "Test" ? (
+      {flowMode !== "Test" && (
         <EdgeLabelRenderer>
           <div
             className="nodrag nopan rounded-badge pointer-events-auto absolute flex h-10 w-10 items-center justify-center bg-base-content"
@@ -62,7 +62,7 @@ export default function CustomEdge({
             <EdgeButton onClick={onClick} />
           </div>
         </EdgeLabelRenderer>
-      ) : null}
+      )}
     </>
   );
 }
