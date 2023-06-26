@@ -67,6 +67,7 @@ const Header: React.FC = () => {
             data-choose-theme
             value={theme}
             onChange={handleThemeChange}
+            id="theme-select"
           >
             <option disabled>Pick a theme</option>
             {themeOptions.map((theme) => (

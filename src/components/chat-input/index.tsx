@@ -37,6 +37,7 @@ const ChatInput = ({ onSendMessage }: ChatInputProps) => {
         onChange={handleMessageChange}
         onKeyDown={handleKeyDown}
         role="input"
+        id="chat-input"
         tabIndex={0}
       />
       <button

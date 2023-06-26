@@ -18,7 +18,7 @@ const Chat = () => {
       <div
         onClick={() => updateFlowMode(0)}
         className="absolute h-[calc(100vh-65px)] w-[50vw]"
-      ></div>
+      />
       <div className="flex h-[calc(100vh-65px)] w-[50vw] flex-col border-l border-base-300 bg-base-100 p-5">
         <div className="p-4">
           <div className="flex items-center justify-between">

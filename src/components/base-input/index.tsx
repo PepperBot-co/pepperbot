@@ -13,6 +13,7 @@ const BaseInput: React.FC<BaseInputData> = ({
   containerCustomClasses = "",
   labelCustomClasses = "",
   inputCustomClasses = "",
+  id,
   ...restProps
 }) => {
   const inputElement = inputType === "input" ? "input" : "textarea";
@@ -22,6 +23,7 @@ const BaseInput: React.FC<BaseInputData> = ({
       {label && (
         <div className="mb-4">
           <label
+            htmlFor={id}
             className={`label-text text-base md:text-lg ${labelCustomClasses}`}
           >
             {label}
@@ -31,6 +33,7 @@ const BaseInput: React.FC<BaseInputData> = ({
 
       {React.createElement(inputElement, {
         className: `${inputTypeDefaultClasses[inputElement]} ${inputCustomClasses}`,
+        id,
         ...restProps,
       })}
     </div>

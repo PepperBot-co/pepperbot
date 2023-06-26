@@ -37,22 +37,24 @@ const NodeOptionsForm = ({ id, data }: PBNodeProps) => {
         title={label}
       />
       <BaseInput
-        key={`message-${id}`}
         containerCustomClasses="pt-6 pb-3"
+        id={`message-input-${id}`}
         inputType="textarea"
-        value={nodeConfigs?.message}
+        key={`message-${id}`}
         label="Message"
-        placeholder="Type in the question here..."
         onChange={updateNodeConfig("message")}
+        placeholder="Type in the question here..."
+        value={nodeConfigs?.message}
       />
       <BaseInput
-        key={`answer-${id}`}
         containerCustomClasses="pt-6 pb-3"
+        id={`answer-input-${id}`}
         inputType="textarea"
+        key={`answer-${id}`}
         label="Expected Answer"
+        onChange={updateNodeConfig("expectedAnswer")}
         placeholder="Leave it empty if nothing is expected from the user."
         value={nodeConfigs?.expectedAnswer}
-        onChange={updateNodeConfig("expectedAnswer")}
       />
     </div>
   );
