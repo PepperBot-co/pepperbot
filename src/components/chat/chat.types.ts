@@ -19,8 +19,8 @@ export type FlowMessages = z.infer<typeof flowMessagesSchema>;
 const chatHandlerSchema = z.object({
   activeNode: z.number(),
   messages: z.array(messageSchema),
-  sendMessage: z.function(z.tuple([z.string()]), z.void()),
-  setMessages: z.function(z.tuple([z.array(messageSchema)]), z.void()),
+  sendMessage: z.function().args(z.string()).returns(z.void()),
+  setMessages: z.function().args(z.array(messageSchema)).returns(z.void()),
   flowMessages: z.array(flowMessagesSchema),
 });
 
