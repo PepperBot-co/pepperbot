@@ -42,6 +42,11 @@ function useEdgeClick(id: EdgeProps["id"]) {
         icon: <ChatBubble />,
         description:
           "Craft a query that requires responses in unformatted text.",
+        nodeConfigs: {
+          type: "QA",
+          message: "",
+          expectedAnswer: "",
+        },
       },
       type: "workflow",
     };
