@@ -23,7 +23,7 @@ const WorkflowNode = ({
       </div>
       <div className={nodeClasses} title="click to update intro">
         <InfoCard
-          description={data?.description}
+          description={data?.nodeConfigs?.message || data?.description}
           icon={data?.icon}
           title={data?.label}
         />
