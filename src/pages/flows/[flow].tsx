@@ -1,6 +1,6 @@
 import Chat from "@pb/components/chat";
 import FlowBuilder from "@pb/components/flow-builder";
-import type { PBNodeProps } from "@pb/components/flow-builder/flow-builder.types";
+import { type PBNodeProps } from "@pb/components/flow-builder/flow-builder.types";
 import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
 import NodeOptionsForm from "@pb/components/node-options-form";
