@@ -1,50 +1,34 @@
+import useThemeController from "@pb/hooks/useThemeController";
+import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { themeChange } from "theme-change";
+import { useRouter } from "next/router";
+import { shallow } from "zustand/shallow";
 
-const themeOptions = [
-  { value: "", label: "Default" },
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
-  { value: "cupcake", label: "Cupcake" },
-  { value: "bumblebee", label: "Bumblebee" },
-  { value: "emerald", label: "Emerald" },
-  { value: "corporate", label: "Corporate" },
-  { value: "synthwave", label: "Synthwave" },
-  { value: "retro", label: "Retro" },
-  { value: "cyberpunk", label: "Cyberpunk" },
-  { value: "valentine", label: "Valentine" },
-  { value: "halloween", label: "Halloween" },
-  { value: "garden", label: "Garden" },
-  { value: "forest", label: "Forest" },
-  { value: "aqua", label: "Aqua" },
-  { value: "lofi", label: "Lofi" },
-  { value: "pastel", label: "Pastel" },
-  { value: "fantasy", label: "Fantasy" },
-  { value: "wireframe", label: "Wireframe" },
-  { value: "black", label: "Black" },
-  { value: "luxury", label: "Luxury" },
-  { value: "dracula", label: "Dracula" },
-  { value: "cmyk", label: "Cmyk" },
-  { value: "autumn", label: "Autumn" },
-  { value: "business", label: "Business" },
-  { value: "acid", label: "Acid" },
-  { value: "lemonade", label: "Lemonade" },
-  { value: "night", label: "Night" },
-  { value: "coffee", label: "Coffee" },
-  { value: "winter", label: "Winter" },
-];
+/**
+ * This function checks whether the given path follows a specific pattern.
+ * Define a regular expression pattern to check the path.
+ * This pattern follows these rules:
+ *   - `^` denotes the start of the string.
+ *   - `\/flows\/` is the literal string "/flows/". The backslashes are used to escape the forward slashes.
+ *   - `[^\/]*` matches any character that is not `/` (i.e., not a segment separator) between zero and unlimited times.
+ *     This ensures that there is only one segment after "/flows/".
+ *   - `$` denotes the end of the string.
+ * @param path {string} The path to check.
+ * @returns {boolean} Returns true if the path follows the pattern, false otherwise.
+ */
+function isFlowPath(path: string): boolean {
+  const pattern = /^\/flows\/[^\/]*$/;
+
+  // It returns true if the path matches, false otherwise.
+  return pattern.test(path);
+}
 
 const Header: React.FC = () => {
-  const [theme, setTheme] = useState("");
-
-  useEffect(() => {
-    themeChange(false);
-  }, []);
-
-  const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(event.target.value);
-  };
+  const { updateFlowMode, flowMode } = useFlowStore(flowSelector, shallow);
+  const showChat = flowMode === "Test";
+  const { theme, themeOptions, setTheme } = useThemeController();
+  const { asPath } = useRouter();
+  const isFlowPage = isFlowPath(asPath);
 
   return (
     <div className="navbar border-b border-base-300 bg-base-100">
@@ -57,19 +41,32 @@ const Header: React.FC = () => {
         </Link>
       </div>
       <div className="flex-none">
-        <select
-          className="select w-full max-w-sm border-base-300"
-          data-choose-theme
-          value={theme}
-          onChange={handleThemeChange}
-        >
-          <option disabled>Pick a theme</option>
-          {themeOptions.map((theme) => (
-            <option key={theme.value} value={theme.value}>
-              {theme.label}
-            </option>
-          ))}
-        </select>
+        <div className="dropdown-end dropdown">
+          <select
+            className="select w-full max-w-sm border-base-300 focus:outline-none"
+            data-choose-theme
+            value={theme}
+            onChange={(event) => setTheme(event.target.value)}
+            id="theme-select"
+          >
+            <option disabled>Pick a theme</option>
+            {themeOptions.map((theme) => (
+              <option key={theme.value} value={theme.value}>
+                {theme.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        {isFlowPage && (
+          <button
+            onClick={() => updateFlowMode(showChat ? "Edit" : "Test")}
+            className={`btn mx-3 max-w-sm px-3 normal-case ${
+              showChat ? "btn-primary" : "btn-ghost"
+            }`}
+          >
+            {showChat ? "Exit Test" : "Test"}
+          </button>
+        )}
       </div>
     </div>
   );

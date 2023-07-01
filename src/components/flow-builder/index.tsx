@@ -1,8 +1,14 @@
 import "reactflow/dist/style.css";
 
 import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
-import type { ProOptions } from "reactflow";
-import ReactFlow, { Background, Controls, ReactFlowProvider } from "reactflow";
+import { useLayoutEffect } from "react";
+import ReactFlow, {
+  Background,
+  Controls,
+  type ProOptions,
+  ReactFlowProvider,
+  useReactFlow,
+} from "reactflow";
 import { shallow } from "zustand/shallow";
 
 import edgeTypes from "./edge-types";
@@ -15,42 +21,58 @@ const fitViewOptions = {
   padding: 0.3,
 };
 
-function ReactFlowPro() {
+function ReactFlowView() {
   useLayout();
 
-  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } =
-    useFlowStore(flowSelector, shallow);
+  const { fitView } = useReactFlow();
+  const {
+    edges,
+    flowMode,
+    nodes,
+    onConnect,
+    onEdgesChange,
+    onNodesChange,
+    onSelectionChange,
+    selectedNode,
+  } = useFlowStore(flowSelector, shallow);
+
+  useLayoutEffect(() => {
+    const execute = setTimeout(() => {
+      fitView({ duration: 300 });
+    }, 100);
+
+    return () => clearTimeout(execute);
+  }, [fitView, flowMode, selectedNode]);
 
   return (
-    <>
-      <ReactFlow
-        edges={edges}
-        edgeTypes={edgeTypes}
-        fitView
-        fitViewOptions={fitViewOptions}
-        maxZoom={1}
-        minZoom={0.5}
-        nodes={nodes}
-        nodesConnectable={false}
-        nodesDraggable={false}
-        nodeTypes={nodeTypes}
-        onConnect={onConnect}
-        onEdgesChange={onEdgesChange}
-        onNodesChange={onNodesChange}
-        proOptions={proOptions}
-        zoomOnDoubleClick={false}
-      >
-        <Background gap={25} />
-        <Controls />
-      </ReactFlow>
-    </>
+    <ReactFlow
+      edges={edges}
+      edgeTypes={edgeTypes}
+      fitView
+      fitViewOptions={fitViewOptions}
+      maxZoom={1}
+      minZoom={0.5}
+      nodes={nodes}
+      nodesConnectable={false}
+      nodesDraggable={false}
+      nodeTypes={nodeTypes}
+      onConnect={onConnect}
+      onEdgesChange={onEdgesChange}
+      onNodesChange={onNodesChange}
+      onSelectionChange={onSelectionChange}
+      proOptions={proOptions}
+      zoomOnDoubleClick={false}
+    >
+      <Background gap={25} />
+      <Controls />
+    </ReactFlow>
   );
 }
 
 function ReactFlowWrapper() {
   return (
     <ReactFlowProvider>
-      <ReactFlowPro />
+      <ReactFlowView />
     </ReactFlowProvider>
   );
 }

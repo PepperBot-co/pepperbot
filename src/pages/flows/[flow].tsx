@@ -1,12 +1,18 @@
 import Chat from "@pb/components/chat";
 import FlowBuilder from "@pb/components/flow-builder";
+import { type PBNodeProps } from "@pb/components/flow-builder/flow-builder.types";
 import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
-import TwoColumnLayout from "@pb/components/layout/two-column";
-// import { api } from "@pb/utils/api";
+import NodeOptionsForm from "@pb/components/node-options-form";
+import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
 import { type NextPage } from "next";
+import { shallow } from "zustand/shallow";
+// import { api } from "@pb/utils/api";
 
 const Flow: NextPage = () => {
+  const { flowMode, selectedNode } = useFlowStore(flowSelector, shallow);
+  const showChat = flowMode === "Test";
+  const showConfigs = !!selectedNode && !showChat;
   // const flow = api.flow.getFlow.useQuery({
   //   flowId: "daily-standup",
   // });
@@ -16,10 +22,15 @@ const Flow: NextPage = () => {
       <HeadMeta title="PepperBot | Demo" />
       <main className="min-h-screen bg-base-100">
         <Header />
-        <TwoColumnLayout
-          leftContent={<FlowBuilder />}
-          rightContent={<Chat />}
-        />
+        <div className="row flex h-[calc(100vh-65px)] w-screen bg-base-200">
+          <div className="h-full flex-1">
+            <FlowBuilder />
+          </div>
+          {showConfigs ? (
+            <NodeOptionsForm {...(selectedNode as unknown as PBNodeProps)} />
+          ) : null}
+          {showChat ? <Chat /> : null}
+        </div>
       </main>
     </>
   );
