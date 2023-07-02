@@ -3,6 +3,7 @@ import { type CardData } from "@pb/components/card/card.types";
 import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
 import { type NextPage } from "next";
+// import { useSession } from "next-auth/react";
 
 const cardData: CardData[] = [
   {
@@ -24,6 +25,8 @@ const cardData: CardData[] = [
 ];
 
 const Home: NextPage = () => {
+  // const session = useSession();
+  // console.log("🚀 ~ file: index.tsx:29 ~ session:", session);
   return (
     <>
       <HeadMeta title="PepperBot | Demo" />

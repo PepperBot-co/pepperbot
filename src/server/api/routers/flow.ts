@@ -24,7 +24,7 @@ export const flowRouter = createTRPCRouter({
       });
     }),
 
-  create: publicProcedure
+  create: protectedProcedure
     .input(
       z.object({
         title: z.string(),
@@ -40,6 +40,7 @@ export const flowRouter = createTRPCRouter({
           slug: input.slug,
           description: input.description,
           data: input.data,
+          userId: ctx.session.user.id,
         },
       });
     }),
