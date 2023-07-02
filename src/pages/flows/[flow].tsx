@@ -5,6 +5,7 @@ import HeadMeta from "@pb/components/head-meta";
 import Header from "@pb/components/header";
 import NodeOptionsForm from "@pb/components/node-options-form";
 import useFlowStore, { flowSelector } from "@pb/store/flow-builder.store";
+// import { api } from "@pb/utils/api";
 import { type NextPage } from "next";
 import { shallow } from "zustand/shallow";
 
@@ -12,6 +13,12 @@ const Flow: NextPage = () => {
   const { flowMode, selectedNode } = useFlowStore(flowSelector, shallow);
   const showChat = flowMode === "Test";
   const showConfigs = !!selectedNode && !showChat;
+  // const { error } = api.flow.getAll.useQuery();
+  // console.log("🚀 ~ file: [flow].tsx:17 ~ flow:", error);
+
+  // if (error) {
+
+  // }
 
   return (
     <>
